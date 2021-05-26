@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/white"
+    android:background="@drawable/borders2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:weightSum="6"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:padding="10dp"
+                android:layout_weight="2"
+                android:src="@drawable/addtocart"
+                ></ImageView>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="4"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/name"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cocobolo"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="26dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="count"
+                        android:textColor="#262628"
+                        android:textSize="15.4sp" />
+
+                    <TextView
+                        android:id="@+id/total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="total"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="#262628"
+                        android:textSize="15.4sp" />
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/edit"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="25dp"
+                android:src="@drawable/edit2">
+
+            </ImageView>
+            <ImageView
+                android:id="@+id/delete"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="25dp"
+                android:src="@drawable/delete">
+
+            </ImageView>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

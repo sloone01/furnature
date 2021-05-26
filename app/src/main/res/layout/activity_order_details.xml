@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_marginTop="30dp"
+            android:layout_width="130dp"
+            android:layout_gravity="center"
+            android:layout_height="100dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/delevery"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center"
+            android:text="Delivery Details"
+            android:textColor="@color/black"
+            android:textSize="32dp"
+            android:gravity="center">
+
+        </TextView>
+
+    </LinearLayout>
+
+
+
+
+    <EditText
+        android:id="@+id/Address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:textColorHint="@color/gray"
+        android:layout_marginRight="20dp"
+        android:background="#f0f0f4"
+        android:drawableLeft="@drawable/email"
+        android:drawablePadding="16dp"
+        android:hint="Address"
+        android:inputType="text"
+        android:padding="12dp"
+        android:textColor="#000" />
+    <EditText
+        android:id="@+id/contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Contact Number"
+        android:inputType="number"
+        android:background="#f0f0f4"
+        android:textColorHint="@color/gray"
+        android:textColor="#000"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="12dp"
+        android:drawablePadding="16dp"
+        android:drawableLeft="@drawable/lockers"
+        />
+    <EditText
+        android:id="@+id/preferedTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Desired Deliveing Time"
+        android:inputType="text"
+        android:background="#f0f0f4"
+        android:textColor="#000"
+        android:layout_marginTop="10dp"
+        android:textColorHint="@color/gray"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="12dp"
+        android:drawablePadding="16dp"
+        android:drawableLeft="@drawable/lockers"
+        />
+    <EditText
+        android:id="@+id/deliveryDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Click here to set Date.."
+        android:inputType="text"
+        android:background="#f0f0f4"
+        android:textColor="#000"
+        android:textColorHint="@color/gray"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="12dp"
+        android:drawablePadding="16dp"
+        android:drawableLeft="@drawable/lockers"
+        />
+
+    <EditText
+        android:id="@+id/langlat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="(Not Ready For , For Location)"
+        android:inputType="text"
+        android:background="#f0f0f4"
+        android:textColor="#000"
+        android:textColorHint="@color/gray"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="12dp"
+        android:drawablePadding="16dp"
+        android:drawableLeft="@drawable/lockers"
+        />
+    <TextView
+        android:id="@+id/sinnp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btnformate"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:textAlignment="center"
+        android:padding="14dp"
+        android:gravity="center"
+        android:text="Place Order"
+        android:textSize="16dp"
+        android:textColor="#fff"
+        />
+</LinearLayout>

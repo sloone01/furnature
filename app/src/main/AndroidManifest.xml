@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.furnature">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE " />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:name=".config.AppConfig"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".AdminUpdateUser"></activity>
+        <activity android:name=".AdminManageUsers" />
+        <activity android:name=".UserDeliveringOrders" />
+        <activity android:name=".ShowMap" />
+        <activity android:name=".ShowItems" />
+        <activity android:name=".AdminOrderItems" />
+        <activity android:name=".maps" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity android:name=".Search" />
+        <activity android:name=".OrderDetails" />
+        <activity android:name=".EditItem" />
+        <activity android:name=".AdminHistory" />
+        <activity android:name=".AdminDeliveryOrders" />
+        <activity android:name=".AdminPendingOrders" />
+        <activity android:name=".ManageItems" />
+        <activity android:name=".UserPendingOrders" />
+        <activity android:name=".ShowCart" />
+        <activity android:name=".ViewItemsByCatagory" />
+        <activity android:name=".EditCatagory" />
+        <activity android:name=".ManageCatagories" />
+        <activity android:name=".AddCatagory" />
+        <activity android:name=".CatagoriesPage" />
+        <activity android:name=".UserMenu" />
+        <activity android:name=".ShopOnline" />
+        <activity android:name=".AdminMenue" />
+        <activity android:name=".AddFurnature" />
+        <activity android:name=".AddImages" />
+        <activity android:name=".Register" />
+        <activity android:name=".Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity" />
+    </application>
+
+</manifest>
