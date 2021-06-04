@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Furnature</string>
+    <string name="app_name">Kit Details</string>
     <string name="description">Description</string>
     <string name="title_activity_maps">Map</string>
     <string name="action_geolocate">Pick Place</string>

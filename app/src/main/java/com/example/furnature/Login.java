@@ -36,8 +36,6 @@ public class Login extends AppCompatActivity {
         textView.setOnClickListener(v->startActivity(new Intent(this,Register.class)));
 
         TextView password = findViewById(R.id.pswd),username = findViewById(R.id.mal);
-        username.setText("admin");
-        password.setText("ssa");
     }
 
     private void signIn(View view) {
