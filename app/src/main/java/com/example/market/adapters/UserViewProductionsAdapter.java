@@ -76,7 +76,7 @@ public View getView(int position, View view, ViewGroup parent) {
         descr = rowView.findViewById(R.id.desc);
         price = rowView.findViewById(R.id.price);
 
-        linearLayout.setOnClickListener(v-> listnerInter.execute(v));
+        linearLayout.setOnClickListener(v-> listnerInter.execute(rowView));
 
 
 

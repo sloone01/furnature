@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.market.adapters.CartAdapter;
@@ -57,7 +58,7 @@ public class ShowCart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_cart);
         long longExtra = getIntent().getLongExtra(SYSTEM.USER.toString(),0);
-        LinearLayout linearLayout = findViewById(R.id.checkout);
+        TextView linearLayout = findViewById(R.id.checkout);
         SharedPreferences pref = getSharedPreferences("user",MODE_PRIVATE);
         username = pref.getString("username","");
        listView = findViewById(R.id.list);
@@ -123,10 +124,7 @@ public class ShowCart extends AppCompatActivity {
         firebaseFirestore.collection(ORDERS.toString())
                 .document(order.getId())
                 .set(order)
-                .addOnSuccessListener(aVoid -> startActivity(new Intent(ShowCart.this, OrderDetails.class)));
-
-        Toast.makeText(this, DELETED,Toast.LENGTH_SHORT).show();
-
+                .addOnSuccessListener(aVoid -> Toast.makeText(this, DELETED,Toast.LENGTH_SHORT).show());
 
     }
 
