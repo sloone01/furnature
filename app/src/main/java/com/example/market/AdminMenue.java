@@ -38,8 +38,7 @@ public class AdminMenue extends AppCompatActivity {
         Bitmap brands = BitmapFactory.decodeResource(this.getResources(), R.drawable.brands);
         Bitmap orders = BitmapFactory.decodeResource(this.getResources(), R.drawable.orders);
         Bitmap delevery = BitmapFactory.decodeResource(this.getResources(), R.drawable.delivery);
-        Bitmap historyIcon = BitmapFactory.decodeResource(this.getResources(), R.drawable.history);
-        Bitmap users = BitmapFactory.decodeResource(this.getResources(), R.drawable.users);
+        Bitmap historyIcon = BitmapFactory.decodeResource(this.getResources(), R.drawable.exit);
 
 
 

@@ -36,17 +36,17 @@ public class UserMenu extends AppCompatActivity {
     {
         //set grid view item
 
-        Bitmap addItem = BitmapFactory.decodeResource(this.getResources(), R.drawable.additem);
-        Bitmap manage = BitmapFactory.decodeResource(this.getResources(), R.drawable.manage);
+        Bitmap products = BitmapFactory.decodeResource(this.getResources(), R.drawable.products);
+        Bitmap manage = BitmapFactory.decodeResource(this.getResources(), R.drawable.search);
         Bitmap orders = BitmapFactory.decodeResource(this.getResources(), R.drawable.cart);
         Bitmap delevery = BitmapFactory.decodeResource(this.getResources(), R.drawable.delivery);
-        Bitmap historyIcon = BitmapFactory.decodeResource(this.getResources(), R.drawable.history);
+        Bitmap historyIcon = BitmapFactory.decodeResource(this.getResources(), R.drawable.exit);
 
 
 
 
 
-        gridArray.add(new Item(addItem,"Furntature",1));
+        gridArray.add(new Item(products,"Products",1));
         gridArray.add(new Item(manage,"Search",2));
         gridArray.add(new Item(orders,"Cart",3));
         gridArray.add(new Item(delevery,"New Orders",4));

@@ -35,10 +35,10 @@ public class MainActivity extends AppCompatActivity {
         //set grid view item
 
         Bitmap profileIcon = BitmapFactory.decodeResource(this.getResources(), R.drawable.profile);
-        Bitmap myworkicon = BitmapFactory.decodeResource(this.getResources(), R.drawable.logo);
+        Bitmap myworkicon = BitmapFactory.decodeResource(this.getResources(), R.drawable.products);
         Bitmap servicesIcon = BitmapFactory.decodeResource(this.getResources(), R.drawable.services);
         Bitmap searchIcon = BitmapFactory.decodeResource(this.getResources(), R.drawable.search_res);
-        Bitmap historyIcon = BitmapFactory.decodeResource(this.getResources(), R.drawable.history);
+        Bitmap historyIcon = BitmapFactory.decodeResource(this.getResources(), R.drawable.exit);
 
 
 

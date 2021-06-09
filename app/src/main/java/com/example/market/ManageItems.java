@@ -11,7 +11,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.market.adapters.FurnatureAdapter;
+import com.example.market.adapters.ProductionsAdapter;
 import com.example.market.general.DATABASE;
 import com.example.market.general.SYSTEM;
 import com.example.market.pojos.Brand;
@@ -52,10 +52,10 @@ public class ManageItems extends AppCompatActivity {
                                 for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
                                     products.add(document.toObject(Product.class));
 
-                    FurnatureAdapter furnatureAdapter = new FurnatureAdapter(this,R.layout.furnature_item2, products
+                    ProductionsAdapter productionsAdapter = new ProductionsAdapter(this,R.layout.furnature_item2, products
                             ,this::edit);
                     gridView = findViewById(R.id.list);
-                    gridView.setAdapter(furnatureAdapter);
+                    gridView.setAdapter(productionsAdapter);
                         });
 
 

@@ -18,7 +18,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.market.adapters.FurnatureAdapter;
+import com.example.market.adapters.ProductionsAdapter;
 import com.example.market.general.DATABASE;
 import com.example.market.general.SYSTEM;
 import com.example.market.pojos.Product;
@@ -71,16 +71,16 @@ public class ViewItemsByBrand extends AppCompatActivity {
                             items.add(document.toObject(Product.class));
 
 
-                    FurnatureAdapter furnatureAdapter = new FurnatureAdapter(this,R.layout.furnature_item, items
+                    ProductionsAdapter productionsAdapter = new ProductionsAdapter(this,R.layout.furnature_item, items
                             ,this::showDialog);
                     listView = findViewById(R.id.list);
-                    listView.setAdapter(furnatureAdapter);
+                    listView.setAdapter(productionsAdapter);
                 });
 
-        FurnatureAdapter furnatureAdapter = new FurnatureAdapter(this,R.layout.furnature_item, items
+        ProductionsAdapter productionsAdapter = new ProductionsAdapter(this,R.layout.furnature_item, items
                 ,this::showDialog);
         listView = findViewById(R.id.list);
-        listView.setAdapter(furnatureAdapter);
+        listView.setAdapter(productionsAdapter);
 
     }
 

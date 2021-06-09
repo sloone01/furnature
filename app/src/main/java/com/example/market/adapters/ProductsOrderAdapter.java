@@ -13,13 +13,14 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 
 import com.example.market.R;
-import com.example.market.pojos.User;
+import com.example.market.pojos.Product;
+import com.example.market.pojos.OrderItem;
 
 import java.util.List;
 
-public class UsersAdapter extends ArrayAdapter<User> {
+public class ProductsOrderAdapter extends ArrayAdapter<OrderItem> {
 
-        List<User> catagoryList;
+        List<OrderItem> catagoryList;
         int layoutResourceId;
         Context context;
         MYListnerInter listnerInter1,listnerInter2;
@@ -28,8 +29,8 @@ public class UsersAdapter extends ArrayAdapter<User> {
 
 
 
-public UsersAdapter(Context context, int layoutResourceId,
-                    List<User> data, MYListnerInter listnerInter1, MYListnerInter listnerInter2) {
+public ProductsOrderAdapter(Context context, int layoutResourceId,
+                            List<OrderItem> data, MYListnerInter listnerInter1) {
         super(context, layoutResourceId, data);
 
 
@@ -50,32 +51,30 @@ public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater=((Activity) context).getLayoutInflater();
         View rowView=inflater.inflate(layoutResourceId, parent,false);
 
-        TextView address,username,total,email,phone;
-        LinearLayout update , delete;
+        TextView title,descr,price,count ,total;
+        LinearLayout linearLayout = rowView.findViewById(R.id.addtocart);
 
 
 
-        address = rowView.findViewById(R.id.address);
-        username = rowView.findViewById(R.id.username);
-        email = rowView.findViewById(R.id.email);
-        phone = rowView.findViewById(R.id.phone);
-        delete = rowView.findViewById(R.id.delete);
-        update = rowView.findViewById(R.id.update);
+        title = rowView.findViewById(R.id.name);
+        descr = rowView.findViewById(R.id.desc);
+        price = rowView.findViewById(R.id.price);
+        count = rowView.findViewById(R.id.count);
+        total = rowView.findViewById(R.id.total);
 
-        User user = catagoryList.get(position);
-        rowView.setTag(user);
+        OrderItem orderItem = catagoryList.get(position);
+        Product item = orderItem.getProduct();
+        rowView.setTag(orderItem);
 
 
-        username.setText(user.getUsername());
-        address.setText(user.getAddress()+"");
-        email.setText(user.getEmail());
-        phone.setText(user.getPhone()+"");
+        title.setText("Item: "+item.getTitle());
+        descr.setText("Description: "+item.getDescription());
+        price.setText(item.getPrice() +" OMR");
+        count.setText(orderItem.getCount()+"");
+        total.setText(orderItem.getTotal()+"OMR");
 
-        update.setOnClickListener(v->listnerInter1.execute(rowView));
-        delete.setOnClickListener(v->listnerInter2.execute(rowView));
+
         return rowView;
-
-
 
         };
 

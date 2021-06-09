@@ -17,7 +17,7 @@ import com.example.market.pojos.Product;
 
 import java.util.List;
 
-public class FurnatureAdapter extends ArrayAdapter<Product> {
+public class ProductionsAdapter extends ArrayAdapter<Product> {
 
         List<Product> catagoryList;
         int layoutResourceId;
@@ -28,8 +28,8 @@ public class FurnatureAdapter extends ArrayAdapter<Product> {
 
 
 
-public FurnatureAdapter(Context context, int layoutResourceId,
-                        List<Product> data, MYListnerInter listnerInter1) {
+public ProductionsAdapter(Context context, int layoutResourceId,
+                          List<Product> data, MYListnerInter listnerInter1) {
         super(context, layoutResourceId, data);
 
 

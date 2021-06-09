@@ -7,7 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.widget.ListView;
 
-import com.example.market.adapters.FurnatureOrderAdapter;
+import com.example.market.adapters.ProductsOrderAdapter;
 import com.example.market.general.DATABASE;
 import com.example.market.pojos.Order;
 import com.example.market.pojos.OrderItem;
@@ -44,10 +44,10 @@ public class ShowItems extends AppCompatActivity {
 
 
 
-                    FurnatureOrderAdapter furnatureAdapter = new FurnatureOrderAdapter(this,R.layout.furnature_order, orderItems
+                    ProductsOrderAdapter productsOrderAdapter = new ProductsOrderAdapter(this,R.layout.furnature_order, orderItems
                             ,null);
                     listView = findViewById(R.id.list);
-                    listView.setAdapter(furnatureAdapter);
+                    listView.setAdapter(productsOrderAdapter);
                 });
 
 

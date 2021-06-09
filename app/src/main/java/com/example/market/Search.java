@@ -17,7 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.example.market.adapters.FurnatureAdapter;
+import com.example.market.adapters.ProductionsAdapter;
 import com.example.market.general.DATABASE;
 import com.example.market.pojos.Product;
 import com.example.market.pojos.Order;
@@ -95,11 +95,11 @@ public class Search extends AppCompatActivity {
 
 
 
-                    FurnatureAdapter furnatureAdapter = new FurnatureAdapter(this,R.layout.furnature_item,furnatures
+                    ProductionsAdapter productionsAdapter = new ProductionsAdapter(this,R.layout.furnature_item,furnatures
                             ,this::showDialog);
 
                     listView = findViewById(R.id.list);
-                    listView.setAdapter(furnatureAdapter);
+                    listView.setAdapter(productionsAdapter);
                 });
 
     }
