@@ -16,7 +16,7 @@ import androidx.annotation.RequiresApi;
 import com.example.furnature.AdminOrderItems;
 import com.example.furnature.AdminPendingOrders;
 import com.example.furnature.R;
-import com.example.furnature.general.DbCons;
+import com.example.furnature.general.DATABASE;
 import com.example.furnature.pojos.Order;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -63,7 +63,7 @@ public View getView(int position, View view, ViewGroup parent) {
                 context.startActivity(intent);
         });
         approve.setOnClickListener(v->{
-                firebaseFirestore.collection(DbCons.Orders.toString())
+                firebaseFirestore.collection(DATABASE.ORDERS.toString())
                         .document(order.getId())
                         .set(order)
                         .addOnSuccessListener(aVoid -> {

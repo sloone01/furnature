@@ -8,12 +8,9 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.furnature.adapters.OrdersAdapter;
 import com.example.furnature.adapters.UserOrdersAdapter;
-import com.example.furnature.general.DbCons;
-import com.example.furnature.general.Helper;
+import com.example.furnature.general.DATABASE;
 import com.example.furnature.pojos.Order;
-import com.example.furnature.pojos.User;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -21,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static com.example.furnature.pojos.constants.Status.Deleivering;
 import static com.example.furnature.pojos.constants.Status.Pending;
 
 public class UserPendingOrders extends AppCompatActivity {
@@ -42,7 +38,7 @@ public class UserPendingOrders extends AppCompatActivity {
 
     private void fileList2() {
         orders = new ArrayList<>();
-        firebaseFirestore.collection(DbCons.Orders.toString())
+        firebaseFirestore.collection(DATABASE.ORDERS.toString())
                 .whereEqualTo("username", username)
                 .whereEqualTo("orderStatus", Pending.toString())
                 .get()

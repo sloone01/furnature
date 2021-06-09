@@ -17,18 +17,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.activeandroid.query.Select;
 import com.example.furnature.adapters.FurnatureAdapter;
-import com.example.furnature.general.DbCons;
-import com.example.furnature.general.Helper;
+import com.example.furnature.general.DATABASE;
 import com.example.furnature.pojos.FItem;
 import com.example.furnature.pojos.Order;
 import com.example.furnature.pojos.OrderItem;
 import com.example.furnature.pojos.User;
-import com.example.furnature.pojos.constants.Status;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.rpc.Help;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,7 +80,7 @@ public class Search extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void fillGridview(String v) {
-        firebaseFirestore.collection(DbCons.Furnatures.toString())
+        firebaseFirestore.collection(DATABASE.ITEMS.toString())
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful())
@@ -135,7 +131,7 @@ public class Search extends AppCompatActivity {
         orderItem.setTotal(count* tag.getPrice());
         Order order = orders.get(0);
         order.getItems().add(orderItem);
-        firebaseFirestore.collection(DbCons.Orders.toString())
+        firebaseFirestore.collection(DATABASE.ORDERS.toString())
                 .document(order.getId())
                 .set(order)
                 .addOnSuccessListener(aVoid -> startActivity(new Intent(Search.this, ShowCart.class)));
@@ -144,7 +140,7 @@ public class Search extends AppCompatActivity {
 
     private void getOrder() {
         orders = new ArrayList<>();
-        firebaseFirestore.collection(DbCons.Orders.toString())
+        firebaseFirestore.collection(DATABASE.ORDERS.toString())
                 .whereEqualTo("status", Cart.toString())
                 .whereEqualTo("user.username",username)
                 .get()

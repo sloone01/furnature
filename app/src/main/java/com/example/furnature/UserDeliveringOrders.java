@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.example.furnature.adapters.UserOrdersAdapter;
-import com.example.furnature.general.DbCons;
+import com.example.furnature.general.DATABASE;
 import com.example.furnature.pojos.Order;
 import com.example.furnature.pojos.constants.Status;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -36,7 +36,7 @@ public class UserDeliveringOrders extends AppCompatActivity {
 
     private void fileList2() {
         orders = new ArrayList<>();
-        firebaseFirestore.collection(DbCons.Orders.toString())
+        firebaseFirestore.collection(DATABASE.ORDERS.toString())
                 .whereEqualTo("username", username)
                 .whereEqualTo("orderStatus", Status.Deleivering.toString())
                 .get()

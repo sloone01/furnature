@@ -2,12 +2,10 @@ package com.example.furnature;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.math.MathUtils;
 
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.icu.util.LocaleData;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,37 +15,34 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import com.activeandroid.Model;
-import com.activeandroid.query.Delete;
-import com.activeandroid.query.Select;
 import com.example.furnature.adapters.CartAdapter;
-import com.example.furnature.adapters.FurnatureAdapter;
-import com.example.furnature.general.DbCons;
 import com.example.furnature.general.Helper;
-import com.example.furnature.general.IntentCons;
-import com.example.furnature.pojos.Catagory;
-import com.example.furnature.pojos.FItem;
+import com.example.furnature.general.SYSTEM;
 import com.example.furnature.pojos.Order;
 import com.example.furnature.pojos.OrderItem;
 import com.example.furnature.pojos.User;
-import com.example.furnature.pojos.constants.Status;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-import java.lang.reflect.GenericArrayType;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
-import static com.example.furnature.general.DbCons.Orders;
+import static com.example.furnature.general.DATABASE.ORDERS;
 import static com.example.furnature.pojos.constants.Status.Cart;
-import static com.example.furnature.pojos.constants.Status.Pending;
 
 public class ShowCart extends AppCompatActivity {
 
+    public static final String DELETED = "Deleted";
+    public static final String CART_IS_EMPTY = "Cart Is Empty";
+    public static final String UPDATED_CART_SUCCEFULLY = "Updated Cart Succefully";
+    public static final String ORDER_STATUS = "orderStatus";
+    public static final String USERNAME = "username";
     ListView listView;
     private Dialog myDialog;
     List<OrderItem> items;
@@ -62,7 +57,7 @@ public class ShowCart extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_cart);
-        long longExtra = getIntent().getLongExtra(IntentCons.User.toString(),0);
+        long longExtra = getIntent().getLongExtra(SYSTEM.USER.toString(),0);
         LinearLayout linearLayout = findViewById(R.id.checkout);
         SharedPreferences pref = getSharedPreferences("user",MODE_PRIVATE);
         username = pref.getString("username","");
@@ -73,15 +68,19 @@ public class ShowCart extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void Checkout(View view) {
+        String myFormat = "yyyy-MM-dd"; //In which you need put here
+        SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.US);
+
+
         if (!found)
         {
-            Helper.message(this,"Cart Is Empty");
+            Toast.makeText(this, CART_IS_EMPTY,Toast.LENGTH_SHORT).show();
             return;
         }
 
         order.setTotelCost(items.stream().map(OrderItem::getTotal).reduce(Float::sum).get());
-        order.setIssueDate(Helper.dateFormat.format(new Date(System.currentTimeMillis())));
-        firebaseFirestore.collection(Orders.toString())
+        order.setIssueDate(dateFormat.format(new Date(System.currentTimeMillis())));
+        firebaseFirestore.collection(ORDERS.toString())
                 .document(order.getId())
                 .set(order)
                 .addOnSuccessListener(aVoid -> startActivity(new Intent(ShowCart.this, OrderDetails.class)));
@@ -92,9 +91,9 @@ public class ShowCart extends AppCompatActivity {
     private void fillGridview() {
         orders = new ArrayList<>();
         items = new ArrayList<>();
-        firebaseFirestore.collection(Orders.toString())
-                .whereEqualTo("orderStatus", Cart.toString())
-                .whereEqualTo("username",username)
+        firebaseFirestore.collection(ORDERS.toString())
+                .whereEqualTo(ORDER_STATUS, Cart.toString())
+                .whereEqualTo(USERNAME,username)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful())
@@ -114,7 +113,7 @@ public class ShowCart extends AppCompatActivity {
                     listView.setAdapter(cartAdapter);
 
                 }).addOnFailureListener(exce->{
-                    Helper.message(ShowCart.this,exce.getMessage());
+                    Toast.makeText(this,exce.getMessage(),Toast.LENGTH_SHORT).show();
         });
 
     }
@@ -122,12 +121,13 @@ public class ShowCart extends AppCompatActivity {
     private void deleteItem(View view) {
         int index = (int) view.getTag();
         order.getItems().remove(index);
-        firebaseFirestore.collection(Orders.toString())
+        firebaseFirestore.collection(ORDERS.toString())
                 .document(order.getId())
                 .set(order)
                 .addOnSuccessListener(aVoid -> startActivity(new Intent(ShowCart.this, OrderDetails.class)));
 
-        Helper.message(this,"Deleted");
+        Toast.makeText(this, DELETED,Toast.LENGTH_SHORT).show();
+
 
     }
 
@@ -155,10 +155,10 @@ public class ShowCart extends AppCompatActivity {
         int count = Integer.parseInt(trim);
         order.getItems().get(index).setCount(count);
         order.getItems().get(index).setTotal(order.getItems().get(index).getfItem().getPrice()*count);
-        firebaseFirestore.collection(Orders.toString())
+        firebaseFirestore.collection(ORDERS.toString())
                 .document(order.getId())
                 .set(order)
-                .addOnSuccessListener(aVoid -> Helper.message(ShowCart.this,"Updated"));
+                .addOnSuccessListener(aVoid ->Toast.makeText(this, UPDATED_CART_SUCCEFULLY,Toast.LENGTH_SHORT).show());
 
         myDialog.dismiss();
 

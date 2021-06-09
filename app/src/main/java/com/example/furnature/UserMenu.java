@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.widget.GridView;
 
 import com.example.furnature.adapters.CustomGridViewAdapter;
-import com.example.furnature.general.IntentCons;
+import com.example.furnature.general.SYSTEM;
 import com.example.furnature.pojos.Item;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class UserMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_menu);
-        userid = getIntent().getLongExtra(IntentCons.User.toString(), 0);
+        userid = getIntent().getLongExtra(SYSTEM.USER.toString(), 0);
         setUpMeenu();
     }
 
@@ -69,7 +69,7 @@ public class UserMenu extends AppCompatActivity {
             switch (item.getId()){
 
                 case 1 :
-                    cls = CatagoriesPage.class;
+                    cls = BrandsPage.class;
                     break;
                 case 2 :
                     cls = Search.class;
@@ -94,7 +94,7 @@ public class UserMenu extends AppCompatActivity {
 
             Intent intent = new Intent(this, cls);
 
-            intent.putExtra(IntentCons.User.toString(),userid);
+            intent.putExtra(SYSTEM.USER.toString(),userid);
             startActivity(intent);
 
         });

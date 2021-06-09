@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -16,22 +15,19 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.furnature.adapters.ManageImagesAdapter;
-import com.example.furnature.general.DbCons;
+import com.example.furnature.general.DATABASE;
 import com.example.furnature.general.Helper;
 import com.example.furnature.pojos.FItem;
 import com.example.furnature.pojos.Image;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.rpc.Help;
 
-import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.UUID;
 
-import static com.example.furnature.general.IntentCons.Item;
+import static com.example.furnature.general.SYSTEM.PRODUCT;
 
 public class AddImages extends AppCompatActivity {
 
@@ -55,7 +51,7 @@ public class AddImages extends AppCompatActivity {
         storageReference = storage.getReference();
 
         Intent intent = getIntent();
-        furnature = (FItem) intent.getSerializableExtra(Item.toString());
+        furnature = (FItem) intent.getSerializableExtra(PRODUCT.toString());
 
         gridArray.add(new Image());
         gridArray.add(new Image());
@@ -88,23 +84,22 @@ public class AddImages extends AppCompatActivity {
             if (Objects.nonNull(file.getUri())){
                 storageReference.child("images/"+file.getRef()).putFile(file.getUri())
                         .addOnSuccessListener(taskSnapshot ->{
+                            Toast.makeText(this,"Image Uploded",Toast.LENGTH_SHORT).show();
 
-                            Helper.message(AddImages.this,"Image Uploded");
                         } ).addOnFailureListener(exceptiom->{
-                    Helper.message(AddImages.this,exceptiom.getMessage());
+                    Toast.makeText(this,exceptiom.getMessage(),Toast.LENGTH_SHORT).show();
                 });
                 furnature.getImages().add(file.getRef());
             }
 
         });
 
-        firebaseFirestore.collection(DbCons.Furnatures.toString())
+        firebaseFirestore.collection(DATABASE.ITEMS.toString())
                 .document(furnature.getId())
                 .set(furnature)
                 .addOnSuccessListener(aVoid -> {
                         startActivity(new Intent(AddImages.this, ManageItems.class));
-                        Helper.message(AddImages.this,"Added Succefully");
-
+                    Toast.makeText(this,"Saved Successfully",Toast.LENGTH_SHORT).show();
                 });
 
 

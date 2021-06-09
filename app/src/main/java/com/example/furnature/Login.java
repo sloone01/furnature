@@ -7,18 +7,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.activeandroid.Model;
-import com.activeandroid.query.Select;
-import com.example.furnature.general.DbCons;
+import com.example.furnature.general.DATABASE;
 import com.example.furnature.general.Helper;
-import com.example.furnature.general.IntentCons;
 import com.example.furnature.pojos.User;
 import com.example.furnature.pojos.constants.Roles;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-
-import java.util.List;
 
 public class Login extends AppCompatActivity {
 
@@ -46,7 +42,7 @@ public class Login extends AppCompatActivity {
 
         String usernameText = username.getText().toString().trim();
         String pass = password.getText().toString().trim();
-        firebaseFirestore.collection(DbCons.Users.toString())
+        firebaseFirestore.collection(DATABASE.USERS.toString())
                 .whereEqualTo("username", username.getText().toString().trim())
                 .whereEqualTo("password",password.getText().toString().trim())
                 .get().addOnCompleteListener(task -> {
@@ -57,9 +53,10 @@ public class Login extends AppCompatActivity {
                 i++;
             }
             if (i == 0) {
-                Helper.message(Login.this, "Wrong Credentials");
+                Toast.makeText(this,"Please Enter Correct Username/password",Toast.LENGTH_SHORT).show();
+
             } else {
-                Helper.message(Login.this, "Loged in Succesfully");
+                Toast.makeText(this,"Logged In",Toast.LENGTH_SHORT).show();
                 SharedPreferences.Editor editor = getSharedPreferences("user", MODE_PRIVATE).edit();
                 editor.putString("username", user.getUsername());
                 editor.apply();

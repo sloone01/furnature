@@ -1,42 +1,33 @@
 {
   "project_info": {
-    "project_number": "461960016797",
-    "firebase_url": "https://furnature-26058.firebaseio.com",
-    "project_id": "furnature-26058",
-    "storage_bucket": "furnature-26058.appspot.com"
+    "project_number": "521969015587",
+    "project_id": "brandmarket-64f95",
+    "storage_bucket": "brandmarket-64f95.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:461960016797:android:21fe220fe3c3482ef8f574",
+        "mobilesdk_app_id": "1:521969015587:android:f551dbca15b3631e6b0a96",
         "android_client_info": {
           "package_name": "com.example.furnature"
         }
       },
       "oauth_client": [
         {
-          "client_id": "461960016797-p4tj44ctmql03ifptfdpu3g1rgvoupn4.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.furnature",
-            "certificate_hash": "af5369738d615a2f121ddeb042b592ca502004f6"
-          }
-        },
-        {
-          "client_id": "461960016797-ev401o1h101eg6eo4cjnqimnbh75q0cc.apps.googleusercontent.com",
+          "client_id": "521969015587-e8gsj67m46cudr7ht8k131ldrci384f0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDOoAoa6KGNqClb-X2TNy3A3C6K_xcQC1Q"
+          "current_key": "AIzaSyBB9yJvmNzMbUcj5N6f9xh11u--oVtnCR4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "461960016797-ev401o1h101eg6eo4cjnqimnbh75q0cc.apps.googleusercontent.com",
+              "client_id": "521969015587-e8gsj67m46cudr7ht8k131ldrci384f0.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

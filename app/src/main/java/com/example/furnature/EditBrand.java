@@ -10,37 +10,46 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.furnature.general.DATABASE;
-import com.example.furnature.general.Helper;
+import com.example.furnature.general.SYSTEM;
 import com.example.furnature.pojos.Brand;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class AddCatagory extends AppCompatActivity {
+public class EditBrand extends AppCompatActivity {
 
 
-    FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     EditText title,description;
     TextView add;
+    Brand brand;
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_catagory);
+        setContentView(R.layout.activity_edit_brand);
+        initialize();
+    }
+
+    private void initialize() {
         title = findViewById(R.id.title);
         description = findViewById(R.id.desc);
         add = findViewById(R.id.sinnp);
         add.setOnClickListener(this::add);
+        brand = (Brand) getIntent().getSerializableExtra(SYSTEM.BRAND.toString());
+        title.setText(brand.getName());
+        description.setText(brand.getSubTitle());
     }
 
     private void add(View view) {
-        Brand brand = new Brand();
         brand.setName(title.getText().toString());
         brand.setSubTitle(description.getText().toString());
-        brand.setId(brand.getName()+"_doc");
         firebaseFirestore.collection(DATABASE.BRANDS.toString())
                 .document(brand.getId())
                 .set(brand)
-                .addOnSuccessListener(aVoid -> startActivity(new Intent(AddCatagory.this, ManageCatagories.class)));
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(this,"Brand has been Updated",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(EditBrand.this, ManageCatagories.class));
 
-        Toast.makeText(this,"Saved Succefully",Toast.LENGTH_SHORT).show();
+                });
+
     }
 }

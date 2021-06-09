@@ -2,47 +2,42 @@ package com.example.furnature.adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.media.Image;
+import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+
+import com.example.furnature.EditBrand;
+import com.example.furnature.ManageCatagories;
 import com.example.furnature.R;
-import com.example.furnature.pojos.Catagory;
+import com.example.furnature.general.DATABASE;
+import com.example.furnature.general.SYSTEM;
+import com.example.furnature.general.Helper;
+import com.example.furnature.pojos.Brand;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
-import java.util.Objects;
 
-public class CatagoryAdapter extends ArrayAdapter<Catagory> {
+public class CatagoryAdapter extends ArrayAdapter<Brand> {
 
-        List<Catagory> catagoryList;
-        int layoutResourceId;
+        List<Brand> brandList;
         Context context;
-        MYListnerInter listnerInter1,listnerInter2;
-
-        int icon1,icon2 ;
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
 
 
-public CatagoryAdapter(Context context, int layoutResourceId,
-                       List<Catagory> data, int icon1 , int icon2, MYListnerInter listnerInter1, MYListnerInter listnerInter2) {
-        super(context, layoutResourceId, data);
-
-
-        this.catagoryList = data;
-        this.layoutResourceId = layoutResourceId;
+public CatagoryAdapter(Context context,                       List<Brand> data) {
+        super(context, R.layout.cat_item2, data);
+        this.brandList = data;
         this.context  = context;
-        this.listnerInter1 = listnerInter1;
-        this.listnerInter2 = listnerInter2;
-        this.icon1= icon1;
-        this.icon2= icon2;
         }
 
 @RequiresApi(api = Build.VERSION_CODES.N)
@@ -51,7 +46,7 @@ public View getView(int position, View view, ViewGroup parent) {
 
 
         LayoutInflater inflater=((Activity) context).getLayoutInflater();
-        View rowView=inflater.inflate(layoutResourceId, parent,false);
+        View rowView=inflater.inflate(R.layout.cat_item2, parent,false);
         RatingBar ratingBar;
 
         TextView textrecycler,descr;
@@ -61,18 +56,27 @@ public View getView(int position, View view, ViewGroup parent) {
         textrecycler = rowView.findViewById(R.id.name);
         descr = rowView.findViewById(R.id.descr);
 
+        Brand brand = brandList.get(position);
 
-        rowView.setTag(catagoryList.get(position));
-        if (Objects.isNull(edit))
-                rowView.setOnClickListener(v->listnerInter1.execute(rowView));
-        else
+        delete.setOnClickListener(v->
         {
-                delete.setOnClickListener(v->listnerInter2.execute(rowView));
-                edit.setOnClickListener(v->listnerInter1.execute(rowView));
-        }
+                firebaseFirestore.collection(DATABASE.BRANDS.toString()).document(brand.getId())
+                        .delete()
+                        .addOnSuccessListener(aVoid -> context.startActivity(new Intent(context,ManageCatagories.class)))
+                        .addOnFailureListener(e -> {
+                        });
 
-        textrecycler.setText(catagoryList.get(position).getCatagoryName());
-        descr.setText(catagoryList.get(position).getDescription());
+                Toast.makeText(context,"Deleted succefully",Toast.LENGTH_SHORT).show();
+        });
+        edit.setOnClickListener(v-> {
+                Intent intent = new Intent(context, EditBrand.class);
+                intent.putExtra(SYSTEM.BRAND.toString(), brand);
+                context.startActivity(intent);
+        });
+
+
+        textrecycler.setText(brand.getName());
+        descr.setText(brand.getSubTitle());
 
 
         return rowView;

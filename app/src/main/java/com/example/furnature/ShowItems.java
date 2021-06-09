@@ -5,22 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ListView;
 
-import com.example.furnature.adapters.FurnatureAdapter;
 import com.example.furnature.adapters.FurnatureOrderAdapter;
-import com.example.furnature.general.DbCons;
-import com.example.furnature.pojos.FItem;
+import com.example.furnature.general.DATABASE;
 import com.example.furnature.pojos.Order;
 import com.example.furnature.pojos.OrderItem;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class ShowItems extends AppCompatActivity {
 
@@ -39,7 +34,7 @@ public class ShowItems extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void loadItems() {
         String id = getIntent().getStringExtra("id");
-        firebaseFirestore.collection(DbCons.Orders.toString())
+        firebaseFirestore.collection(DATABASE.ORDERS.toString())
                 .whereEqualTo("id",id)
                 .get()
                 .addOnCompleteListener(task -> {

@@ -9,8 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.furnature.general.DbCons;
-import com.example.furnature.general.IntentCons;
+import com.example.furnature.general.DATABASE;
 import com.example.furnature.pojos.User;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -48,7 +47,7 @@ public class Register extends AppCompatActivity {
         user.setRole(getRole(name.getText().toString()));
         user.setAdmin(Approved.toString());
         firebaseFirestore
-                .collection(DbCons.Users.toString())
+                .collection(DATABASE.USERS.toString())
                 .document(user.getUsername())
                 .set(user)
                 .addOnSuccessListener(avoid->{

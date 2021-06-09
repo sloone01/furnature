@@ -8,11 +8,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.furnature.general.DbCons;
+import com.example.furnature.general.DATABASE;
 import com.example.furnature.pojos.User;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.io.Serializable;
 
 public class AdminUpdateUser extends AppCompatActivity {
 
@@ -55,7 +53,7 @@ public class AdminUpdateUser extends AppCompatActivity {
 
     private void Update(View view) {
         updateUser();
-        firebaseFirestore.collection(DbCons.Users.toString())
+        firebaseFirestore.collection(DATABASE.USERS.toString())
                 .document(user.getUsername())
                 .set(user)
                 .addOnSuccessListener(aVoid -> {

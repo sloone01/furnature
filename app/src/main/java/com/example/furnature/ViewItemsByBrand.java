@@ -19,9 +19,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.furnature.adapters.FurnatureAdapter;
-import com.example.furnature.general.DbCons;
-import com.example.furnature.general.IntentCons;
-import com.example.furnature.pojos.Catagory;
+import com.example.furnature.general.DATABASE;
+import com.example.furnature.general.SYSTEM;
 import com.example.furnature.pojos.FItem;
 import com.example.furnature.pojos.Order;
 import com.example.furnature.pojos.OrderItem;
@@ -36,7 +35,7 @@ import java.util.UUID;
 
 import static com.example.furnature.pojos.constants.Status.Cart;
 
-public class ViewItemsByCatagory extends AppCompatActivity {
+public class ViewItemsByBrand extends AppCompatActivity {
 
     String catagoryName;
     ListView listView;
@@ -51,7 +50,7 @@ public class ViewItemsByCatagory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_items_by_catagoey);
         Intent intent = getIntent();
-        catagoryName = intent.getStringExtra(IntentCons.Catagory.toString());
+        catagoryName = intent.getStringExtra(SYSTEM.BRAND.toString());
         SharedPreferences pref = getSharedPreferences("user",MODE_PRIVATE);
         username = pref.getString("username","");
         setOrder();
@@ -63,7 +62,7 @@ public class ViewItemsByCatagory extends AppCompatActivity {
     private void fillGridview() {
         items = new ArrayList<>();
 
-        firebaseFirestore.collection(DbCons.Furnatures.toString())
+        firebaseFirestore.collection(DATABASE.ITEMS.toString())
                 .whereEqualTo("catagory", catagoryName)
                 .get()
                 .addOnCompleteListener(task -> {
@@ -94,7 +93,7 @@ public class ViewItemsByCatagory extends AppCompatActivity {
         EditText count = itemView.findViewById(R.id.count);
         confirm.setOnClickListener(v->addtocart(tag,count.getText().toString().trim()));
 
-        myDialog = new Dialog(ViewItemsByCatagory.this);
+        myDialog = new Dialog(ViewItemsByBrand.this);
         myDialog.getWindow();
         myDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         myDialog.setCancelable(true);
@@ -112,16 +111,16 @@ public class ViewItemsByCatagory extends AppCompatActivity {
         orderItem.setTotal(count* tag.getPrice());
         Order order = orders.get(0);
         order.getItems().add(orderItem);
-        firebaseFirestore.collection(DbCons.Orders.toString())
+        firebaseFirestore.collection(DATABASE.ORDERS.toString())
                 .document(order.getId())
                 .set(order)
-                .addOnSuccessListener(aVoid -> startActivity(new Intent(ViewItemsByCatagory.this, ShowCart.class)));
+                .addOnSuccessListener(aVoid -> startActivity(new Intent(ViewItemsByBrand.this, ShowCart.class)));
         myDialog.dismiss();
     }
 
     private void setOrder() {
         orders = new ArrayList<>();
-        firebaseFirestore.collection(DbCons.Orders.toString())
+        firebaseFirestore.collection(DATABASE.ORDERS.toString())
                 .whereEqualTo("orderStatus", Cart.toString())
                 .whereEqualTo("username", username)
                 .get()

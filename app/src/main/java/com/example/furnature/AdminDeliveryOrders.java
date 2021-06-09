@@ -10,13 +10,8 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.example.furnature.adapters.DeliverOrderAdapter;
-import com.example.furnature.adapters.FurnatureAdapter;
-import com.example.furnature.adapters.OrdersAdapter;
-import com.example.furnature.adapters.PendingOrderAdapter;
-import com.example.furnature.general.DbCons;
-import com.example.furnature.pojos.FItem;
+import com.example.furnature.general.DATABASE;
 import com.example.furnature.pojos.Order;
-import com.example.furnature.pojos.constants.Status;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -44,7 +39,7 @@ public class AdminDeliveryOrders extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void fillGridview() {
         orderList = new ArrayList<>();
-        firebaseFirestore.collection(DbCons.Orders.toString())
+        firebaseFirestore.collection(DATABASE.ORDERS.toString())
                 .whereEqualTo("orderStatus", Deleivering.toString())
                 .get()
                 .addOnCompleteListener(task -> {
@@ -72,7 +67,7 @@ public class AdminDeliveryOrders extends AppCompatActivity {
     private void Done(View view) {
         Order tag = (Order) view.getTag();
         tag.setOrderStatus(Done.toString());
-        firebaseFirestore.collection(DbCons.Orders.toString())
+        firebaseFirestore.collection(DATABASE.ORDERS.toString())
                 .document(tag.getId())
                 .set(tag)
                 .addOnSuccessListener(aVoid -> {

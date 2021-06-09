@@ -35,11 +35,11 @@
         <activity android:name=".ManageItems" />
         <activity android:name=".UserPendingOrders" />
         <activity android:name=".ShowCart" />
-        <activity android:name=".ViewItemsByCatagory" />
-        <activity android:name=".EditCatagory" />
+        <activity android:name=".ViewItemsByBrand" />
+        <activity android:name=".EditBrand" />
         <activity android:name=".ManageCatagories" />
         <activity android:name=".AddCatagory" />
-        <activity android:name=".CatagoriesPage" />
+        <activity android:name=".BrandsPage" />
         <activity android:name=".UserMenu" />
         <activity android:name=".ShopOnline" />
         <activity android:name=".AdminMenue" />

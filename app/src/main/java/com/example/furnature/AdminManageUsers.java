@@ -10,8 +10,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.furnature.adapters.UsersAdapter;
-import com.example.furnature.general.DbCons;
-import com.example.furnature.pojos.Order;
+import com.example.furnature.general.DATABASE;
 import com.example.furnature.pojos.User;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -19,8 +18,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import static com.example.furnature.pojos.constants.Status.Deleivering;
 
 public class AdminManageUsers extends AppCompatActivity {
 
@@ -39,7 +36,7 @@ public class AdminManageUsers extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void fillGridview() {
         usersList = new ArrayList<>();
-        firebaseFirestore.collection(DbCons.Users.toString())
+        firebaseFirestore.collection(DATABASE.USERS.toString())
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful())
@@ -65,7 +62,7 @@ public class AdminManageUsers extends AppCompatActivity {
     private void delete(View view) {
         User user = (User) view.getTag();
 
-        firebaseFirestore.collection(DbCons.Users.toString())
+        firebaseFirestore.collection(DATABASE.USERS.toString())
                 .document(user.getUsername())
                 .delete()
                 .addOnSuccessListener(aVoid -> {

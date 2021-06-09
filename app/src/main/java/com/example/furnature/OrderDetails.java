@@ -20,9 +20,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.example.furnature.general.DbCons;
+import com.example.furnature.general.DATABASE;
 import com.example.furnature.pojos.Order;
-import com.example.furnature.pojos.User;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -37,7 +36,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.UUID;
 
 import static com.example.furnature.pojos.constants.Status.Cart;
 import static com.example.furnature.pojos.constants.Status.Pending;
@@ -71,7 +69,7 @@ public class OrderDetails extends AppCompatActivity {
 
 
     private void loadOrder() {
-        firebaseFirestore.collection(DbCons.Orders.toString())
+        firebaseFirestore.collection(DATABASE.ORDERS.toString())
                 .whereEqualTo("orderStatus", Cart.toString())
                 .whereEqualTo("username", username)
                 .get()
@@ -105,7 +103,7 @@ public class OrderDetails extends AppCompatActivity {
 
         order.setLon(longitude);
         order.setLat(latitude);
-        firebaseFirestore.collection(DbCons.Orders.toString())
+        firebaseFirestore.collection(DATABASE.ORDERS.toString())
                 .document(order.getId())
                 .set(order)
                 .addOnSuccessListener(aVoid -> startActivity(new Intent(OrderDetails.this, ShowCart.class)));

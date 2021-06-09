@@ -9,15 +9,16 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.furnature.general.DbCons;
+import com.example.furnature.general.DATABASE;
 import com.example.furnature.general.Helper;
-import com.example.furnature.general.IntentCons;
-import com.example.furnature.pojos.Catagory;
+import com.example.furnature.general.SYSTEM;
+import com.example.furnature.pojos.Brand;
 import com.example.furnature.pojos.FItem;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,8 +32,8 @@ import java.util.stream.Collectors;
 
 public class EditItem extends AppCompatActivity {
     private Spinner spinner;
-    private List<Catagory> catagoryList;
-    private Catagory catagory;
+    private List<Brand> brandList;
+    private Brand brand;
     private FItem furnature;
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
@@ -41,7 +42,7 @@ public class EditItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_item);
-        furnature = (FItem) getIntent().getSerializableExtra(IntentCons.Item.toString());
+        furnature = (FItem) getIntent().getSerializableExtra(SYSTEM.PRODUCT.toString());
         TextView add = findViewById(R.id.add);
         TextView delete = findViewById(R.id.delete);
         delete.setOnClickListener(this::delete);
@@ -52,7 +53,7 @@ public class EditItem extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                catagory = (Catagory) parent.getSelectedItem();
+                brand = (Brand) parent.getSelectedItem();
             }
 
             @Override
@@ -75,12 +76,13 @@ public class EditItem extends AppCompatActivity {
     }
 
     private void delete(View view) {
-        firebaseFirestore.collection(DbCons.Furnatures.toString()).document(furnature.getId())
+        firebaseFirestore.collection(DATABASE.ITEMS.toString()).document(furnature.getId())
                 .delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Helper.message(EditItem.this,"Deleted");
+                        Toast.makeText(EditItem.this,"Deleted Successfully",Toast.LENGTH_SHORT).show();
+
                         startActivity(new Intent(EditItem.this,ManageItems.class));
                     }
                 })
@@ -94,24 +96,24 @@ public class EditItem extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void getCatagories() {
-        catagoryList = new ArrayList<>();
-            firebaseFirestore.collection(DbCons.Catagory.toString())
+        brandList = new ArrayList<>();
+            firebaseFirestore.collection(DATABASE.BRANDS.toString())
                     .get()
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful())
                             for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
-                                catagoryList.add(document.toObject(Catagory.class));
+                                brandList.add(document.toObject(Brand.class));
 
-                        List<String> collect = catagoryList.stream().map(Catagory::getCatagoryName).collect(Collectors.toList());
+                        List<String> collect = brandList.stream().map(Brand::getName).collect(Collectors.toList());
                         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(EditItem.this,
                                 android.R.layout.simple_spinner_item, collect);
                         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinner.setAdapter(dataAdapter);
-                        spinner.setSelection(dataAdapter.getPosition(this.catagoryList.get(0).getCatagoryName()));
+                        spinner.setSelection(dataAdapter.getPosition(this.brandList.get(0).getName()));
                         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                catagory = catagoryList.get(position);
+                                brand = brandList.get(position);
                             }
 
                             @Override
@@ -128,11 +130,11 @@ public class EditItem extends AppCompatActivity {
     private void saveItem(View view) {
         EditText name= findViewById(R.id.name),price = findViewById(R.id.Price),
                 desc = findViewById(R.id.desc),color = findViewById(R.id.color);
-        furnature.setCatagory(catagory.getCatagoryName());
+        furnature.setCatagory(brand.getName());
         furnature.setDescription(desc.getText().toString().trim());
         furnature.setPrice(Float.parseFloat(price.getText().toString().trim()));
         furnature.setTitle( name.getText().toString().trim());
-            firebaseFirestore.collection(DbCons.Furnatures.toString())
+            firebaseFirestore.collection(DATABASE.ITEMS.toString())
                     .document(furnature.getId())
                     .set(furnature)
                     .addOnSuccessListener(aVoid -> startActivity(new Intent(EditItem.this, ManageItems.class)));

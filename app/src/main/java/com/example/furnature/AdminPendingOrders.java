@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.example.furnature.adapters.PendingOrderAdapter;
-import com.example.furnature.general.DbCons;
+import com.example.furnature.general.DATABASE;
 import com.example.furnature.pojos.Order;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -37,7 +37,7 @@ public class AdminPendingOrders extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void fillGridview() {
         orderList = new ArrayList<>();
-        firebaseFirestore.collection(DbCons.Orders.toString())
+        firebaseFirestore.collection(DATABASE.ORDERS.toString())
                 .whereEqualTo("orderStatus", Pending.toString())
                 .get()
                 .addOnCompleteListener(task -> {
@@ -65,7 +65,7 @@ public class AdminPendingOrders extends AppCompatActivity {
         Order tag = (Order) view.getTag();
         tag.setOrderStatus(Deleivering.toString());
 
-        firebaseFirestore.collection(DbCons.Orders.toString())
+        firebaseFirestore.collection(DATABASE.ORDERS.toString())
                 .document(tag.getId())
                 .set(tag)
                 .addOnSuccessListener(aVoid -> {
