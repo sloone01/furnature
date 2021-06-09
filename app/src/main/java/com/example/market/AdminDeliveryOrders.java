@@ -48,7 +48,7 @@ public class AdminDeliveryOrders extends AppCompatActivity {
                             orderList.add(document.toObject(Order.class));
 
                     DeliverOrderAdapter ordersAdapter = new DeliverOrderAdapter(this, R.layout.delivering_orders, orderList
-                            , this::map,this::Done);
+                            ,this::Done);
                     ListView listView = findViewById(R.id.list);
                     listView.setAdapter(ordersAdapter);
                 });
@@ -56,13 +56,7 @@ public class AdminDeliveryOrders extends AppCompatActivity {
 
     }
 
-    private void map(View view) {
-        Order tag = (Order) view.getTag();
-        Intent intent = new Intent(this, ShowMap.class);
-        intent.putExtra("lon",tag.getLon());
-        intent.putExtra("lat",tag.getLat());
-        startActivity(intent);
-    }
+
 
     private void Done(View view) {
         Order tag = (Order) view.getTag();

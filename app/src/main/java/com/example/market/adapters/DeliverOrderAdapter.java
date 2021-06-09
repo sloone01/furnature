@@ -29,7 +29,7 @@ public class DeliverOrderAdapter extends ArrayAdapter<Order> {
 
 
 public DeliverOrderAdapter(Context context, int layoutResourceId,
-                           List<Order> data, MYListnerInter listnerInter1,MYListnerInter listnerInter2) {
+                           List<Order> data, MYListnerInter listnerInter1) {
         super(context, layoutResourceId, data);
 
 
@@ -37,9 +37,6 @@ public DeliverOrderAdapter(Context context, int layoutResourceId,
         this.layoutResourceId = layoutResourceId;
         this.context  = context;
         this.listnerInter1 = listnerInter1;
-        this.listnerInter2 = listnerInter2;
-        this.icon1= icon1;
-        this.icon2= icon2;
         }
 
 @RequiresApi(api = Build.VERSION_CODES.N)
@@ -50,16 +47,13 @@ public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater=((Activity) context).getLayoutInflater();
         View rowView=inflater.inflate(layoutResourceId, parent,false);
 
-        TextView userRef,date,desiredTime,addrss;
+        TextView userRef,address;
         LinearLayout show,done;
 
 
 
         userRef = rowView.findViewById(R.id.userRef);
-        date = rowView.findViewById(R.id.deliverOn);
-        desiredTime = rowView.findViewById(R.id.desiredTime);
-        addrss = rowView.findViewById(R.id.address);
-        show = rowView.findViewById(R.id.map);
+        address = rowView.findViewById(R.id.address);
         done = rowView.findViewById(R.id.done);
 
 
@@ -68,11 +62,8 @@ public View getView(int position, View view, ViewGroup parent) {
 
 
         userRef.setText("Username: "+order.getUsername()+"");
-        addrss.setText("Contact: "+order.getContact());
-        date.setText("Deliver Date: "+order.getDeliverDate());
-        desiredTime.setText(order.getPrefTime());
+        address.setText("Contact: "+order.getContact());
 
-        show.setOnClickListener(v->listnerInter1.execute(rowView));
         done.setOnClickListener(v->listnerInter2.execute(rowView));
         return rowView;
 

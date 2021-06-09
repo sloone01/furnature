@@ -6,25 +6,14 @@ import java.util.List;
 public class Order implements Serializable {
 
     private float totelCost;
-
     private String issueDate;
-
     private User user;
-
     private String address;
-
-    private double lon;
-
-    private double lat;
-
     private long contact;
-
     private String orderStatus;
     private List<OrderItem> items;
     private String id;
     private String username;
-    private String prefTime;
-    private String deliverDate;
 
 
     public Order(){
@@ -62,21 +51,6 @@ public class Order implements Serializable {
         this.address = address;
     }
 
-    public double getLon() {
-        return lon;
-    }
-
-    public void setLon(double lon) {
-        this.lon = lon;
-    }
-
-    public double getLat() {
-        return lat;
-    }
-
-    public void setLat(double lat) {
-        this.lat = lat;
-    }
 
     public long getContact() {
         return contact;
@@ -118,19 +92,4 @@ public class Order implements Serializable {
         return username;
     }
 
-    public void setPrefTime(String prefTime) {
-        this.prefTime = prefTime;
-    }
-
-    public String getPrefTime() {
-        return prefTime;
-    }
-
-    public void setDeliverDate(String deliverDate) {
-        this.deliverDate = deliverDate;
-    }
-
-    public String getDeliverDate() {
-        return deliverDate;
-    }
 }
