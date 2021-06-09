@@ -37,13 +37,13 @@
         <activity android:name=".ShowCart" />
         <activity android:name=".ViewItemsByBrand" />
         <activity android:name=".EditBrand" />
-        <activity android:name=".ManageCatagories" />
+        <activity android:name=".ManageBrands" />
         <activity android:name=".AddCatagory" />
         <activity android:name=".BrandsPage" />
         <activity android:name=".UserMenu" />
         <activity android:name=".ShopOnline" />
         <activity android:name=".AdminMenue" />
-        <activity android:name=".AddFurnature" />
+        <activity android:name=".AddProduct" />
         <activity android:name=".AddImages" />
         <activity android:name=".Register" />
         <activity android:name=".Login">

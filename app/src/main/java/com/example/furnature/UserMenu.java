@@ -38,8 +38,8 @@ public class UserMenu extends AppCompatActivity {
 
         Bitmap addItem = BitmapFactory.decodeResource(this.getResources(), R.drawable.additem);
         Bitmap manage = BitmapFactory.decodeResource(this.getResources(), R.drawable.manage);
-        Bitmap orders = BitmapFactory.decodeResource(this.getResources(), R.drawable.orders);
-        Bitmap delevery = BitmapFactory.decodeResource(this.getResources(), R.drawable.delevery);
+        Bitmap orders = BitmapFactory.decodeResource(this.getResources(), R.drawable.cart);
+        Bitmap delevery = BitmapFactory.decodeResource(this.getResources(), R.drawable.delivery);
         Bitmap historyIcon = BitmapFactory.decodeResource(this.getResources(), R.drawable.history);
 
 

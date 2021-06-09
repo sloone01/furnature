@@ -24,7 +24,7 @@
                 android:layout_height="100dp"
                 android:padding="10dp"
                 android:layout_weight="2"
-                android:src="@drawable/addtocart"
+                android:src="@drawable/cart"
                 ></ImageView>
             <LinearLayout
                 android:layout_width="0dp"
@@ -76,7 +76,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="25dp"
-                android:src="@drawable/edit2">
+                android:src="@drawable/edit">
 
             </ImageView>
             <ImageView

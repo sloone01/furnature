@@ -10,7 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.furnature.general.DATABASE;
-import com.example.furnature.general.Helper;
 import com.example.furnature.pojos.Brand;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -39,7 +38,7 @@ public class AddCatagory extends AppCompatActivity {
         firebaseFirestore.collection(DATABASE.BRANDS.toString())
                 .document(brand.getId())
                 .set(brand)
-                .addOnSuccessListener(aVoid -> startActivity(new Intent(AddCatagory.this, ManageCatagories.class)));
+                .addOnSuccessListener(aVoid -> startActivity(new Intent(AddCatagory.this, ManageBrands.class)));
 
         Toast.makeText(this,"Saved Succefully",Toast.LENGTH_SHORT).show();
     }

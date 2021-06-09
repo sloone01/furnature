@@ -16,11 +16,10 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 
 import com.example.furnature.EditBrand;
-import com.example.furnature.ManageCatagories;
+import com.example.furnature.ManageBrands;
 import com.example.furnature.R;
 import com.example.furnature.general.DATABASE;
 import com.example.furnature.general.SYSTEM;
-import com.example.furnature.general.Helper;
 import com.example.furnature.pojos.Brand;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -62,7 +61,7 @@ public View getView(int position, View view, ViewGroup parent) {
         {
                 firebaseFirestore.collection(DATABASE.BRANDS.toString()).document(brand.getId())
                         .delete()
-                        .addOnSuccessListener(aVoid -> context.startActivity(new Intent(context,ManageCatagories.class)))
+                        .addOnSuccessListener(aVoid -> context.startActivity(new Intent(context, ManageBrands.class)))
                         .addOnFailureListener(e -> {
                         });
 

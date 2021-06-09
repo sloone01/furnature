@@ -23,7 +23,7 @@
                 android:id="@+id/image"
                 android:layout_width="160dp"
                 android:layout_height="120dp"
-                android:background="@drawable/delevery"/>
+                android:background="@drawable/delivery"/>
         </FrameLayout>
 
 
@@ -91,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginRight="15dp"
-                    android:background="@drawable/furnature_rect"
+                    android:background="@drawable/btnback"
                     android:gravity="center"
                     android:paddingRight="20dp"
                     android:paddingLeft="12dp">
@@ -101,8 +101,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="1dp"
-                        android:text="Items"
-                        android:textColor="#4a4a4a"
+                        android:text="Products"
+                        android:textColor="@color/white"
                         android:textSize="14.4sp" />
 
                 </LinearLayout>

@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.furnature.adapters.FurnatureAdapter;
 import com.example.furnature.general.DATABASE;
@@ -33,6 +35,10 @@ public class ManageItems extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_items);
+        TextView addProduct = findViewById(R.id.add_product);
+        addProduct.setOnClickListener(v -> startActivity(new Intent(this, AddProduct.class)));
+        ImageView exit = findViewById(R.id.exit);
+        exit.setOnClickListener(v->startActivity(new Intent(this, AdminMenue.class)));
         furnatures = new ArrayList<>();
         fillGridview();
     }

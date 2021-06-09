@@ -34,10 +34,10 @@ public class AdminMenue extends AppCompatActivity {
     {
         //set grid view item
 
-        Bitmap addItem = BitmapFactory.decodeResource(this.getResources(), R.drawable.additem);
-        Bitmap manage = BitmapFactory.decodeResource(this.getResources(), R.drawable.manage);
+        Bitmap products = BitmapFactory.decodeResource(this.getResources(), R.drawable.products);
+        Bitmap brands = BitmapFactory.decodeResource(this.getResources(), R.drawable.brands);
         Bitmap orders = BitmapFactory.decodeResource(this.getResources(), R.drawable.orders);
-        Bitmap delevery = BitmapFactory.decodeResource(this.getResources(), R.drawable.delevery);
+        Bitmap delevery = BitmapFactory.decodeResource(this.getResources(), R.drawable.delivery);
         Bitmap historyIcon = BitmapFactory.decodeResource(this.getResources(), R.drawable.history);
         Bitmap users = BitmapFactory.decodeResource(this.getResources(), R.drawable.users);
 
@@ -45,13 +45,13 @@ public class AdminMenue extends AppCompatActivity {
 
 
 
-        gridArray.add(new Item(addItem,"Add Item",1));
-        gridArray.add(new Item(manage,"ManageItems",2));
-        gridArray.add(new Item(addItem,"Add Catagory",3));
-        gridArray.add(new Item(manage,"Manage Catagories",4));
-        gridArray.add(new Item(orders,"New Orders",5));
-        gridArray.add(new Item(delevery,"Delivery Queue",6));
-        gridArray.add(new Item(users,"Manage Users",8));
+        gridArray.add(new Item(products,"Add Item",1));
+        gridArray.add(new Item(products,"Products",2));
+        gridArray.add(new Item(products,"Add Catagory",3));
+        gridArray.add(new Item(brands,"Brands",4));
+        gridArray.add(new Item(orders,"Orders",5));
+        gridArray.add(new Item(delevery,"Delivery",6));
+        gridArray.add(new Item(users,"Users",8));
         gridArray.add(new Item(historyIcon,"Logout",7));
 
 
@@ -69,7 +69,7 @@ public class AdminMenue extends AppCompatActivity {
             switch (item.getId()){
 
                 case 1 :
-                    cls = AddFurnature.class;
+                    cls = AddProduct.class;
                     break;
                 case 2 :
                     cls = ManageItems.class;
@@ -78,7 +78,7 @@ public class AdminMenue extends AppCompatActivity {
                     cls = AddCatagory.class;
                     break;
                 case 4:
-                    cls = ManageCatagories.class;
+                    cls = ManageBrands.class;
                     break;
                 case 5:
                     cls = AdminPendingOrders.class;

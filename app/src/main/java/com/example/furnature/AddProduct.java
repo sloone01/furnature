@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 
 import static com.example.furnature.general.SYSTEM.PRODUCT;
 
-public class AddFurnature extends AppCompatActivity {
+public class AddProduct extends AppCompatActivity {
 
     private Spinner spinner;
     private List<Brand> brandList;
@@ -38,7 +38,7 @@ public class AddFurnature extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_furnature);
+        setContentView(R.layout.activity_add_product);
         TextView add = findViewById(R.id.add);
         brandList = new ArrayList<>();
         spinner = findViewById(R.id.catagories);
@@ -57,7 +57,7 @@ public class AddFurnature extends AppCompatActivity {
                             brandList.add(document.toObject(Brand.class));
 
                     List<String> collect = brandList.stream().map(Brand::getName).collect(Collectors.toList());
-                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(AddFurnature.this,
+                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(AddProduct.this,
                             android.R.layout.simple_spinner_item, collect);
                     dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinner.setAdapter(dataAdapter);

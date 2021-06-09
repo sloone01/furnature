@@ -20,7 +20,7 @@
                 android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:background="@drawable/furnature"/>
+                android:background="@drawable/products"/>
         </FrameLayout>
 
 
@@ -88,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginRight="15dp"
-                    android:background="@drawable/furnature_rect"
+                    android:background="@drawable/pro_rect"
                     android:gravity="center"
                     android:paddingRight="20dp"
                     android:paddingLeft="12dp">

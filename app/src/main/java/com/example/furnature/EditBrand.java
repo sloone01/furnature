@@ -47,7 +47,7 @@ public class EditBrand extends AppCompatActivity {
                 .set(brand)
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(this,"Brand has been Updated",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(EditBrand.this, ManageCatagories.class));
+                    startActivity(new Intent(EditBrand.this, ManageBrands.class));
 
                 });
 

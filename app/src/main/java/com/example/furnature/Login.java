@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,20 +27,20 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        TextView textView = findViewById(R.id.sup);
-        TextView login = findViewById(R.id.sinnp);
+        TextView textView = findViewById(R.id.signup);
+        Button login = findViewById(R.id.signin);
 
         login.setOnClickListener(this::signIn);
         textView.setOnClickListener(v->startActivity(new Intent(this,Register.class)));
 
-        TextView password = findViewById(R.id.pswd),username = findViewById(R.id.mal);
+        EditText password = findViewById(R.id.password),username = findViewById(R.id.email);
         username.setText("admin");
-        password.setText("ssa");
+        password.setText("admin");
     }
 
     private void signIn(View view) {
 
-        TextView password = findViewById(R.id.pswd),username = findViewById(R.id.mal);
+        EditText password = findViewById(R.id.password),username = findViewById(R.id.email);
 
         String usernameText = username.getText().toString().trim();
         String pass = password.getText().toString().trim();

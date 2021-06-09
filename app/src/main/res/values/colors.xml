@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="black">#000000</color>
+    <color name="background">#f7ecea</color>
     <color name="white">#ffffff</color>
     <color name="gridBackground">#FFCC99</color>
     <color name="gray">#bbaeb6</color>

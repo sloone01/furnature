@@ -27,7 +27,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
                     android:layout_height="70dp"
-                    android:src="@drawable/addtocart">
+                    android:src="@drawable/cart">
 
                 </ImageView>
 
@@ -35,41 +35,14 @@
                     android:id="@+id/title"
                     android:layout_width="0dp"
                     android:layout_weight="2"
+                    android:layout_marginTop="35dp"
                     android:layout_marginRight="30dp"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textColor="#000000"
-                    android:gravity="center"
-                    android:layout_gravity="center"
                     android:text="My Cart"
                     android:textSize="28dp"/>
-                <LinearLayout
-                    android:id="@+id/checkout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="15dp"
-                    android:background="@drawable/furnature_rect"
-                    android:gravity="center"
-                    android:paddingRight="20dp"
-                    android:paddingLeft="12dp">
 
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="10dp"
-                        android:padding="1dp"
-                        android:src="@drawable/addtocart2" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="1dp"
-                        android:text="Checkout"
-                        android:textColor="#4a4a4a"
-                        android:textSize="14.4sp" />
-
-                </LinearLayout>
 
             </LinearLayout>
 
@@ -78,6 +51,38 @@
                 android:layout_height="0dp"
                 android:layout_weight="7"
                 android:id="@+id/list"></ListView>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center|bottom"
+                    android:background="#80000000">
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="20dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/checkout">
+
+                    </ImageView>
+                    <TextView
+                        android:id="@+id/checkout"
+                        android:layout_width="0dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Checkout"
+                        android:textColor="#fff"
+                        android:textSize="19dp"
+                        android:padding="16dp"/>
+                </LinearLayout>
+            </FrameLayout>
 
         </LinearLayout>
 

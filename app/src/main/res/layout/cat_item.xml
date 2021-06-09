@@ -23,7 +23,7 @@
                 android:layout_height="100dp"
                 android:padding="10dp"
                 android:layout_weight="2"
-                android:src="@drawable/cat"
+                android:src="@drawable/brands"
                 ></ImageView>
             <LinearLayout
                 android:layout_width="0dp"

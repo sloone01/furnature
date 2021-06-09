@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                     cls = Login.class;
                     break;
                 case 4:
-                    cls = AddFurnature.class;
+                    cls = AddProduct.class;
                     break;
                 case 5:
                     cls = Login.class;

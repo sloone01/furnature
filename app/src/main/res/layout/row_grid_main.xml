@@ -8,16 +8,16 @@
 
     <ImageView
         android:id="@+id/android_gridview_image"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginTop="15dp" />
 
     <TextView
         android:id="@+id/android_gridview_text"
         android:layout_width="wrap_content"
-        android:textColor="#000000"
+        android:textColor="@color/white"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:textSize="12dp"
+        android:textSize="15dp"
         android:textStyle="bold"/>
 </LinearLayout>
