@@ -4,20 +4,25 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.market.general.DATABASE;
 import com.example.market.pojos.Brand;
 import com.example.market.pojos.Product;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +36,10 @@ public class AddProduct extends AppCompatActivity {
 
     private Spinner spinner;
     private List<Brand> brandList;
+    FirebaseStorage storage;
+    StorageReference storageReference;
+    ImageView image;
+    private Uri path;
     private Brand brand;
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
@@ -40,7 +49,12 @@ public class AddProduct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
         TextView add = findViewById(R.id.add);
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+        image = findViewById(R.id.image);
+        image.setOnClickListener(this::UplodeImage);
         brandList = new ArrayList<>();
+
         spinner = findViewById(R.id.catagories);
         addCatagoriesToSpinner();
         add.setOnClickListener(this::saveItem);
@@ -79,8 +93,10 @@ public class AddProduct extends AppCompatActivity {
     }
 
     private void saveItem(View view) {
+
         EditText name= findViewById(R.id.name),price = findViewById(R.id.Price),
                 desc = findViewById(R.id.desc),color = findViewById(R.id.color);
+
         Product product = new Product();
         product.setCatagory(brand.getName());
         product.setDescription(desc.getText().toString().trim());
@@ -88,15 +104,49 @@ public class AddProduct extends AppCompatActivity {
         product.setPrice(Float.parseFloat(price.getText().toString().trim()));
         product.setTitle(name.getText().toString().trim());
         product.setColor(color.getText().toString().trim());
-//        firebaseFirestore.collection(DbCons.Furnatures.toString())
-//                .document(fItem.getId())
-//                .set(fItem)
-//                .addOnSuccessListener(aVoid -> startActivity(new Intent(AddFurnature.this, ManageItems.class)));
-//
 
-        Intent intent = new Intent(this, AddImages.class);
-        intent.putExtra(PRODUCT.toString(), product);
-        startActivity(intent);
+
+
+        storageReference.child("images/"+product.getId()).putFile(path)
+                .addOnSuccessListener(taskSnapshot ->{
+                    Toast.makeText(this,"Image Uploded",Toast.LENGTH_SHORT).show();
+                } ).addOnFailureListener(exceptiom->{
+            Toast.makeText(this,exceptiom.getMessage(),Toast.LENGTH_SHORT).show();
+        });
+
+        firebaseFirestore.collection(DATABASE.ITEMS.toString())
+                .document(product.getId())
+                .set(product)
+                .addOnSuccessListener(v->{
+                    Toast.makeText(this,"Image Uploded",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(AddProduct.this, ManageItems.class));
+                });
 
     }
+
+    private void UplodeImage(View view) {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1);
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (Objects.nonNull(data))
+            path = data.getData();
+        try {
+            image.setImageURI(path);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 }

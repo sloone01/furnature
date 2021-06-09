@@ -17,7 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.example.market.adapters.ProductionsAdapter;
+import com.example.market.adapters.UserViewProductionsAdapter;
 import com.example.market.general.DATABASE;
 import com.example.market.pojos.Product;
 import com.example.market.pojos.Order;
@@ -40,7 +40,7 @@ public class Search extends AppCompatActivity {
     private Dialog myDialog;
     private String user;
     private String username;
-    List<Product> furnatures;
+    List<Product> products;
     List<Order> orders;
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
@@ -49,7 +49,7 @@ public class Search extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         getOrder();
-        furnatures = new ArrayList<>();
+        products = new ArrayList<>();
         orders = new ArrayList<>();
         SharedPreferences pref = getSharedPreferences("user",MODE_PRIVATE);
         username = pref.getString("username","");
@@ -85,9 +85,9 @@ public class Search extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful())
                         for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
-                            furnatures.add(document.toObject(Product.class));
+                            products.add(document.toObject(Product.class));
 
-                        furnatures = furnatures.stream().filter(item->
+                        products = products.stream().filter(item->
                                 item.getDescription().contains(v) || item.getTitle().contains(v))
                                 .collect(Collectors.toList());
 
@@ -95,7 +95,7 @@ public class Search extends AppCompatActivity {
 
 
 
-                    ProductionsAdapter productionsAdapter = new ProductionsAdapter(this,R.layout.furnature_item,furnatures
+                    UserViewProductionsAdapter productionsAdapter = new UserViewProductionsAdapter(this, products
                             ,this::showDialog);
 
                     listView = findViewById(R.id.list);

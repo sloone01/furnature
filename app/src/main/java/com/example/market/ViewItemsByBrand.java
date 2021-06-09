@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.market.adapters.ProductionsAdapter;
+import com.example.market.adapters.UserViewProductionsAdapter;
 import com.example.market.general.DATABASE;
 import com.example.market.general.SYSTEM;
 import com.example.market.pojos.Product;
@@ -70,15 +71,17 @@ public class ViewItemsByBrand extends AppCompatActivity {
                         for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
                             items.add(document.toObject(Product.class));
 
-
-                    ProductionsAdapter productionsAdapter = new ProductionsAdapter(this,R.layout.furnature_item, items
-                            ,this::showDialog);
+                    UserViewProductionsAdapter productionsAdapter = new UserViewProductionsAdapter(this, items
+                            ,this::showDialog );
                     listView = findViewById(R.id.list);
                     listView.setAdapter(productionsAdapter);
+
+
+
                 });
 
-        ProductionsAdapter productionsAdapter = new ProductionsAdapter(this,R.layout.furnature_item, items
-                ,this::showDialog);
+        UserViewProductionsAdapter productionsAdapter = new UserViewProductionsAdapter(this, items
+                ,this::showDialog );
         listView = findViewById(R.id.list);
         listView.setAdapter(productionsAdapter);
 

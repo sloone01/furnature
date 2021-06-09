@@ -52,8 +52,7 @@ public class ManageItems extends AppCompatActivity {
                                 for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
                                     products.add(document.toObject(Product.class));
 
-                    ProductionsAdapter productionsAdapter = new ProductionsAdapter(this,R.layout.furnature_item2, products
-                            ,this::edit);
+                    ProductionsAdapter productionsAdapter = new ProductionsAdapter(this, products);
                     gridView = findViewById(R.id.list);
                     gridView.setAdapter(productionsAdapter);
                         });

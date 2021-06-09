@@ -49,7 +49,7 @@ public View getView(int position, View view, ViewGroup parent) {
         RatingBar ratingBar;
 
         TextView textrecycler,descr;
-        ImageView delete = rowView.findViewById(R.id.edit),edit =rowView.findViewById(R.id.delete);
+        ImageView delete = rowView.findViewById(R.id.delete),edit =rowView.findViewById(R.id.edit);
 
 
         textrecycler = rowView.findViewById(R.id.name);

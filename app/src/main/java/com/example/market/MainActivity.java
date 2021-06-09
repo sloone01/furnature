@@ -64,9 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getId()){
 
-                case 1 :
-                    cls = AddImages.class;
-                    break;
                 case 2 :
                     cls = ShopOnline.class;
                     break;

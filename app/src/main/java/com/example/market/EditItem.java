@@ -33,7 +33,7 @@ public class EditItem extends AppCompatActivity {
     private Spinner spinner;
     private List<Brand> brandList;
     private Brand brand;
-    private Product furnature;
+    private Product product;
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -41,7 +41,7 @@ public class EditItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_item);
-        furnature = (Product) getIntent().getSerializableExtra(SYSTEM.PRODUCT.toString());
+        product = (Product) getIntent().getSerializableExtra(SYSTEM.PRODUCT.toString());
         TextView add = findViewById(R.id.add);
         TextView delete = findViewById(R.id.delete);
         delete.setOnClickListener(this::delete);
@@ -67,15 +67,15 @@ public class EditItem extends AppCompatActivity {
                 desc = findViewById(R.id.desc),color = findViewById(R.id.color);
 
 
-        name.setText(furnature.getTitle());
-        price.setText(furnature.getPrice()+"");
-        desc.setText(furnature.getDescription());
-        color.setText(furnature.getColor());
+        name.setText(product.getTitle());
+        price.setText(product.getPrice()+"");
+        desc.setText(product.getDescription());
+        color.setText(product.getColor());
 
     }
 
     private void delete(View view) {
-        firebaseFirestore.collection(DATABASE.ITEMS.toString()).document(furnature.getId())
+        firebaseFirestore.collection(DATABASE.ITEMS.toString()).document(product.getId())
                 .delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -129,13 +129,13 @@ public class EditItem extends AppCompatActivity {
     private void saveItem(View view) {
         EditText name= findViewById(R.id.name),price = findViewById(R.id.Price),
                 desc = findViewById(R.id.desc),color = findViewById(R.id.color);
-        furnature.setCatagory(brand.getName());
-        furnature.setDescription(desc.getText().toString().trim());
-        furnature.setPrice(Float.parseFloat(price.getText().toString().trim()));
-        furnature.setTitle( name.getText().toString().trim());
+        product.setCatagory(brand.getName());
+        product.setDescription(desc.getText().toString().trim());
+        product.setPrice(Float.parseFloat(price.getText().toString().trim()));
+        product.setTitle( name.getText().toString().trim());
             firebaseFirestore.collection(DATABASE.ITEMS.toString())
-                    .document(furnature.getId())
-                    .set(furnature)
+                    .document(product.getId())
+                    .set(product)
                     .addOnSuccessListener(aVoid -> startActivity(new Intent(EditItem.this, ManageItems.class)));
 
             Intent intent = new Intent(this, ManageItems.class);

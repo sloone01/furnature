@@ -41,7 +41,6 @@
         <activity android:name="com.example.market.ShopOnline" />
         <activity android:name="com.example.market.AdminMenue" />
         <activity android:name="com.example.market.AddProduct" />
-        <activity android:name="com.example.market.AddImages" />
         <activity android:name="com.example.market.Register" />
         <activity android:name="com.example.market.Login">
             <intent-filter>
