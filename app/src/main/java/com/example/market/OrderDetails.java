@@ -40,8 +40,9 @@ import java.util.Objects;
 import static com.example.market.pojos.constants.Status.Cart;
 import static com.example.market.pojos.constants.Status.Pending;
 
-public class OrderDetails extends AppCompatActivity {
+public class OrderDetails extends AppCompatActivity{
 
+    final Calendar myCalendar = Calendar.getInstance();
     EditText address,langlat,prefTime,contactInfo,date;
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     private String username;
@@ -63,6 +64,7 @@ public class OrderDetails extends AppCompatActivity {
     }
 
 
+
     private void loadOrder() {
         firebaseFirestore.collection(DATABASE.ORDERS.toString())
                 .whereEqualTo("orderStatus", Cart.toString())
@@ -80,11 +82,11 @@ public class OrderDetails extends AppCompatActivity {
     private void init() {
         date = findViewById(R.id.deliveryDate);
         address = findViewById(R.id.Address);
-        langlat = findViewById(R.id.langlat);
         prefTime = findViewById(R.id.preferedTime);
         contactInfo = findViewById(R.id.contact);
         add = findViewById(R.id.sinnp);
         add.setOnClickListener(this::addDetails);
+
 
 
     }

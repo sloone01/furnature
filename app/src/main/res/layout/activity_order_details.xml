@@ -98,22 +98,6 @@
         android:drawableLeft="@drawable/lockers"
         />
 
-    <EditText
-        android:id="@+id/langlat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="(Not Ready For , For Location)"
-        android:inputType="text"
-        android:background="@drawable/edit_white"
-        android:textColor="#000"
-        android:textColorHint="@color/gray"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:padding="12dp"
-        android:drawablePadding="16dp"
-        android:drawableLeft="@drawable/lockers"
-        />
     <TextView
         android:id="@+id/sinnp"
         android:layout_width="match_parent"
