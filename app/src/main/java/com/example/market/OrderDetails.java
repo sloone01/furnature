@@ -86,9 +86,33 @@ public class OrderDetails extends AppCompatActivity{
         contactInfo = findViewById(R.id.contact);
         add = findViewById(R.id.sinnp);
         add.setOnClickListener(this::addDetails);
+        initDatTimePicker(date);
+
+    }
+
+    private void initDatTimePicker(final EditText textView) {
+        DatePickerDialog.OnDateSetListener date = (view , year, monthOfYear,
+                                                   dayOfMonth) ->{
+            // TODO Auto-generated method stub
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel(textView,myCalendar);
+        };
 
 
+        textView.setOnClickListener(v -> {
+            // TODO Auto-generated method stub
+            new DatePickerDialog(this, date, myCalendar
+                    .get(Calendar.YEAR) , myCalendar.get(Calendar.MONTH),
+                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+        });
+    }
+    private void updateLabel(EditText editText,Calendar calender) {
+        String myFormat = "yyyy-MM-dd"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
+        editText.setText(sdf.format(calender.getTime()));
     }
     private void addDetails(View view) {
         Order order = orders.get(0);
@@ -98,9 +122,7 @@ public class OrderDetails extends AppCompatActivity{
         firebaseFirestore.collection(DATABASE.ORDERS.toString())
                 .document(order.getId())
                 .set(order)
-                .addOnSuccessListener(aVoid -> startActivity(new Intent(OrderDetails.this, ShowCart.class)));
-        Intent intent = new Intent(this, UserPendingOrders.class);
-        startActivity(intent);
+                .addOnSuccessListener(aVoid -> startActivity(new Intent(this, UserPendingOrders.class)));
 
     }
 
