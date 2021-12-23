@@ -47,13 +47,14 @@ public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater=((Activity) context).getLayoutInflater();
         View rowView=inflater.inflate(layoutResourceId, parent,false);
 
-        TextView userRef,address;
+        TextView userRef,address,deliveron;
         LinearLayout show,done;
 
 
 
         userRef = rowView.findViewById(R.id.userRef);
         address = rowView.findViewById(R.id.address);
+        deliveron = rowView.findViewById(R.id.deliverOn);
         done = rowView.findViewById(R.id.done);
 
 
@@ -62,8 +63,8 @@ public View getView(int position, View view, ViewGroup parent) {
 
 
         userRef.setText("Username: "+order.getUsername()+"");
-        address.setText("Contact: "+order.getContact());
-
+        deliveron.setText("Contact: "+order.getContact());
+        address.setText("Address =: "+order.getAddress());
         done.setOnClickListener(v->listnerInter2.execute(rowView));
         return rowView;
 

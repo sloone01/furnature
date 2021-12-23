@@ -14,6 +14,8 @@ public class Order implements Serializable {
     private List<OrderItem> items;
     private String id;
     private String username;
+    private String preferdTime;
+    private String desiredDeliveryDate;
 
 
     public Order(){
@@ -92,4 +94,19 @@ public class Order implements Serializable {
         return username;
     }
 
+    public void setPreferdTime(String preferdTime) {
+        this.preferdTime = preferdTime;
+    }
+
+    public String getPreferdTime() {
+        return preferdTime;
+    }
+
+    public void setDesiredDeliveryDate(String desiredDeliveryDate) {
+        this.desiredDeliveryDate = desiredDeliveryDate;
+    }
+
+    public String getDesiredDeliveryDate() {
+        return desiredDeliveryDate;
+    }
 }

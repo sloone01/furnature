@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/white"
+    android:background="@color/colorPrimaryDark"
     android:layout_height="wrap_content">
 
 
@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Cocobolo Poolside Bar + Grill"
-                android:textColor="#262628"
+                android:textColor="@color/white"
                 android:textSize="19.2dp" />
 
             <TextView
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="60 Kub Pines Apt. 797"
-                android:textColor="#9b9b9b"
+                android:textColor="@color/white"
                 android:textSize="14.4sp" />
 
 
@@ -80,7 +80,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:text="10:00 - 23:00"
-                        android:textColor="#4a4a4a"
+                        android:textColor="@color/colorAccent"
                         android:textSize="14.4sp" />
 
                 </LinearLayout>

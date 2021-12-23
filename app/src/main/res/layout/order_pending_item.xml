@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/colorPrimaryDark"
+    android:paddingBottom="10dp"
     android:layout_height="wrap_content">
 
     <LinearLayout
@@ -35,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textColor="#262628"
+                android:textColor="@color/white"
                 android:textSize="19.2dp" />
 
             <TextView
@@ -43,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textColor="#262628"
+                android:textColor="@color/white"
                 android:textSize="15.2dp" />
 
             <TextView
@@ -51,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textColor="#262628"
+                android:textColor="@color/white"
                 android:textSize="15.2dp" />
 
 
@@ -89,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text=""
-                android:textColor="#4a4a4a"
+                android:textColor="@color/colorAccent"
                 android:textSize="14.4sp" />
 
         </LinearLayout>

@@ -66,9 +66,9 @@ public View getView(int position, View view, ViewGroup parent) {
         rowView.setTag(order);
 
 
-        userRef.setText(order.getUsername());
-        address.setText(order.getAddress()+"");
-        date.setText(order.getIssueDate());
+        userRef.setText("Created By"+order.getUsername());
+        address.setText("Address:"+order.getAddress()+"");
+        date.setText("Checkout Date:"+order.getIssueDate());
         total.setText(order.getTotelCost() +" OMR");
 
         approve.setOnClickListener(v->listnerInter1.execute(rowView));

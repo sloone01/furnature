@@ -118,6 +118,8 @@ public class OrderDetails extends AppCompatActivity{
         Order order = orders.get(0);
         order.setContact(Long.parseLong(contactInfo.getText().toString()));
         order.setAddress(address.getText().toString());
+        order.setPreferdTime(prefTime.getText().toString());
+        order.setDesiredDeliveryDate(date.getText().toString());
         order.setOrderStatus(Pending.toString());
         firebaseFirestore.collection(DATABASE.ORDERS.toString())
                 .document(order.getId())

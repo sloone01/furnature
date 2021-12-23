@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:backgroundTint="@color/white"
+    android:backgroundTint="@color/colorPrimary"
     android:background="@drawable/borders2">
 
     <LinearLayout
@@ -20,6 +20,7 @@
             android:weightSum="6"
             android:orientation="horizontal">
             <ImageView
+                android:id="@+id/item_img"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
                 android:padding="10dp"
@@ -39,7 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Cocobolo"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/white"
                     android:textSize="26dp" />
 
                 <LinearLayout
@@ -90,8 +91,15 @@
 
 
         </LinearLayout>
+        <View
+            android:id="@+id/devider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#FFFFFF"
+            />
 
     </LinearLayout>
+
 
 
 </RelativeLayout>

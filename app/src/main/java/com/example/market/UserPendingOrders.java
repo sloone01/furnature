@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +34,8 @@ public class UserPendingOrders extends AppCompatActivity {
         setContentView(R.layout.activity_user_pending_orders);
         SharedPreferences pref = getSharedPreferences("user",MODE_PRIVATE);
         username = pref.getString("username","");
+        ImageView home = findViewById(R.id.home);
+        home.setOnClickListener(v -> startActivity(new Intent(this,AdminMenue.class)));
         fileList2();
     }
 

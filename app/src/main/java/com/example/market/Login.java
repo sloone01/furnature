@@ -33,8 +33,8 @@ public class Login extends AppCompatActivity {
         textView.setOnClickListener(v->startActivity(new Intent(this,Register.class)));
 
         EditText password = findViewById(R.id.password),username = findViewById(R.id.email);
-        username.setText("omani");
-        password.setText("omani123");
+        username.setText("admin");
+        password.setText("admin");
     }
 
     private void signIn(View view) {

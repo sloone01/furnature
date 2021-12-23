@@ -2,6 +2,8 @@ package com.example.market.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +11,17 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
 import com.example.market.R;
 import com.example.market.pojos.OrderItem;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class CartAdapter extends ArrayAdapter<OrderItem> {
@@ -52,7 +59,18 @@ public View getView(int position, View view, ViewGroup parent) {
 
         TextView title,count,total;
         ImageView edit = rowView.findViewById(R.id.edit),delete = rowView.findViewById(R.id.delete);
+        ImageView image = rowView.findViewById(R.id.item_img);
 
+        StorageReference reference = FirebaseStorage.getInstance().getReference().child("images/" + orderItems.get(position).getProduct().getId());
+        try {
+                final File localFile =  File.createTempFile("images", "");
+                reference.getFile(localFile).addOnSuccessListener(taskSnapshot -> {
+                        Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                        image.setImageBitmap(bitmap);
+                }).addOnFailureListener(exception -> Toast.makeText(context,exception.getMessage(),Toast.LENGTH_SHORT).show());
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
 
 
 
@@ -67,8 +85,8 @@ public View getView(int position, View view, ViewGroup parent) {
 
 
         title.setText(orderItems.get(position).getProduct().getTitle());
-        count.setText(orderItems.get(position).getCount()+"");
-        total.setText(orderItems.get(position).getTotal() +" OMR");
+        count.setText("Quant: "+orderItems.get(position).getCount()+"");
+        total.setText("Price: "+orderItems.get(position).getTotal() +" OMR");
 
 
         return rowView;

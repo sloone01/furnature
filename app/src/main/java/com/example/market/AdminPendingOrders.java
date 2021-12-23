@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.market.adapters.PendingOrderAdapter;
@@ -31,6 +32,8 @@ public class AdminPendingOrders extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_pending_orders);
+        ImageView home = findViewById(R.id.home);
+        home.setOnClickListener(v -> startActivity(new Intent(this,AdminMenue.class)));
         fillGridview();
     }
 

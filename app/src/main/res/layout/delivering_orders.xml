@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/white"
+    android:background="@color/gray"
     android:layout_height="wrap_content">
 
 
@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Cocobolo Poolside Bar + Grill"
-                android:textColor="#262628"
+                android:textColor="@color/black"
                 android:textSize="19.2dp" />
 
             <TextView
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="60 Kub Pines Apt. 797"
-                android:textColor="#9b9b9b"
+                android:textColor="@color/black"
                 android:textSize="14.4sp" />
 
             <TextView
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="60 Kub Pines Apt. 797"
-                android:textColor="#9b9b9b"
+                android:textColor="@color/black"
                 android:textSize="14.4sp" />
 
 
@@ -69,7 +69,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Desired Time:"
-                        android:textColor="#c2c4ca"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="14.4sp" />
 
 
@@ -81,28 +81,6 @@
                         android:text="10:00 - 23:00"
                         android:textColor="#4a4a4a"
                         android:textSize="14.4sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/map"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/pro_rect"
-                    android:gravity="center"
-                    android:padding="10dp">
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="1dp"
-                        android:layout_marginLeft="2dp"
-                        android:text="Map"
-                        android:textColor="#4a4a4a"
-                        android:textSize="16.4sp" />
 
                 </LinearLayout>
                 <LinearLayout
