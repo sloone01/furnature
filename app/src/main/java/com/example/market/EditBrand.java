@@ -36,12 +36,11 @@ public class EditBrand extends AppCompatActivity {
         add.setOnClickListener(this::add);
         brand = (Brand) getIntent().getSerializableExtra(SYSTEM.BRAND.toString());
         title.setText(brand.getName());
-        description.setText(brand.getSubTitle());
     }
 
     private void add(View view) {
         brand.setName(title.getText().toString());
-        brand.setSubTitle(description.getText().toString());
+
         firebaseFirestore.collection(DATABASE.BRANDS.toString())
                 .document(brand.getId())
                 .set(brand)

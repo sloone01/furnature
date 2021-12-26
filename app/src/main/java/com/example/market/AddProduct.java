@@ -95,9 +95,11 @@ public class AddProduct extends AppCompatActivity {
     private void saveItem(View view) {
 
         EditText name= findViewById(R.id.name),price = findViewById(R.id.Price),
-                desc = findViewById(R.id.desc),color = findViewById(R.id.color);
+                desc = findViewById(R.id.desc),color = findViewById(R.id.color),
+                oldprice =findViewById(R.id.old_price);
 
         Product product = new Product();
+        product.setOldPrice(Float.parseFloat(oldprice.getText().toString()));
         product.setCatagory(brand.getName());
         product.setDescription(desc.getText().toString().trim());
         product.setId(UUID.randomUUID().toString().substring(1,6));
@@ -110,17 +112,18 @@ public class AddProduct extends AppCompatActivity {
         storageReference.child("images/"+product.getId()).putFile(path)
                 .addOnSuccessListener(taskSnapshot ->{
                     Toast.makeText(this,"Image Uploded",Toast.LENGTH_SHORT).show();
+                    firebaseFirestore.collection(DATABASE.ITEMS.toString())
+                            .document(product.getId())
+                            .set(product)
+                            .addOnSuccessListener(v->{
+                                Toast.makeText(this,"Image Uploded",Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(AddProduct.this, ManageItems.class));
+                            });
                 } ).addOnFailureListener(exceptiom->{
             Toast.makeText(this,exceptiom.getMessage(),Toast.LENGTH_SHORT).show();
         });
 
-        firebaseFirestore.collection(DATABASE.ITEMS.toString())
-                .document(product.getId())
-                .set(product)
-                .addOnSuccessListener(v->{
-                    Toast.makeText(this,"Image Uploded",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(AddProduct.this, ManageItems.class));
-                });
+
 
     }
 

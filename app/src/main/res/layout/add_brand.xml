@@ -38,21 +38,6 @@
         android:drawablePadding="16dp"
         />
 
-    <EditText
-        android:id="@+id/description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Description Name"
-        android:background="@drawable/edit_white"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray"
-        android:textAlignment="center"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginRight="1dp"
-        android:padding="12dp"
-        android:drawablePadding="16dp"
-        />
 
     <LinearLayout
         android:orientation="horizontal"

@@ -19,6 +19,7 @@ public class Product implements Serializable {
     private List<String> images;
     private String id;
     private String color;
+    private float oldPrice;
 
 
     public Product() {
@@ -91,5 +92,13 @@ public class Product implements Serializable {
 
     public String getColor() {
         return color;
+    }
+
+    public void setOldPrice(float oldPrice) {
+        this.oldPrice = oldPrice;
+    }
+
+    public float getOldPrice() {
+        return oldPrice;
     }
 }

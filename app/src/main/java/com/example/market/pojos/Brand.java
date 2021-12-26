@@ -6,7 +6,6 @@ import java.io.Serializable;
 public class Brand implements Serializable {
 
     private String Name;
-    private String subTitle;
     private String id;
 
     public Brand() {
@@ -21,13 +20,6 @@ public class Brand implements Serializable {
         this.Name = name;
     }
 
-    public String getSubTitle() {
-        return subTitle;
-    }
-
-    public void setSubTitle(String subTitle) {
-        this.subTitle = subTitle;
-    }
 
     @Override
     public String toString() {

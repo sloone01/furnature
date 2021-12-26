@@ -53,7 +53,7 @@ public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater=((Activity) context).getLayoutInflater();
         View rowView=inflater.inflate(R.layout.products_item, parent,false);
 
-        TextView title,descr,price;
+        TextView title,descr,price,old_price;
         LinearLayout linearLayout = rowView.findViewById(R.id.addtocart);
         ImageView image = rowView.findViewById(R.id.image);
         Product product = catagoryList.get(position);
@@ -75,6 +75,7 @@ public View getView(int position, View view, ViewGroup parent) {
         title = rowView.findViewById(R.id.name);
         descr = rowView.findViewById(R.id.desc);
         price = rowView.findViewById(R.id.price);
+        old_price = rowView.findViewById(R.id.old_price);
 
         linearLayout.setOnClickListener(v-> listnerInter.execute(rowView));
 
@@ -82,7 +83,8 @@ public View getView(int position, View view, ViewGroup parent) {
 
         title.setText(product.getTitle());
         descr.setText(product.getDescription());
-        price.setText(product.getPrice() +" OMR");
+        price.setText("Price:"+product.getPrice() +" OMR");
+        old_price.setText("Purchase Price:"+product.getPrice() +" OMR");
 
 
         return rowView;

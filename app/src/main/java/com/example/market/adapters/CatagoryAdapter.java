@@ -75,7 +75,6 @@ public View getView(int position, View view, ViewGroup parent) {
 
 
         textrecycler.setText(brand.getName());
-        descr.setText(brand.getSubTitle());
 
 
         return rowView;
